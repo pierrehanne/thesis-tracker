@@ -1,0 +1,39 @@
+# Ignore the local environment configuration files
+.env
+*.env
+
+# Ignore Python bytecode files
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore virtual environments
+venv/
+.env/
+*.egg-info/
+
+# Ignore build artifacts
+build/
+dist/
+*.egg
+*.tar.gz
+
+# Ignore logs and temporary files
+*.log
+tmp/
+*.tmp
+
+# Ignore IDE and editor-specific files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Ignore Docker-specific files that shouldn't be included in the image
+Dockerfile*
+docker-compose.override.yml
+
+# Ignore poetry cache
+.poetry/
+.cache/
