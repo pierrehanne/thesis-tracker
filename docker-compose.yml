@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  thesis-tracker:
+    build:
+      context: .              # The directory containing Dockerfile
+      dockerfile: Dockerfile  # Explicitly specifying the Dockerfile (optional)
+    env_file:
+      - .env                  # Use an external .env file for environment variables
+    volumes:
+      - ./logs:/app/logs      # Ensure ./logs exists on your host system
+    command: poetry run python src/thesis_tracker.py
+    restart: unless-stopped   # Ensures the service is restarted if it fails
