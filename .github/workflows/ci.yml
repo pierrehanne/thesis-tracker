@@ -112,11 +112,11 @@ jobs:
           docker buildx build \
             --cache-from=type=local,src=/tmp/.buildx-cache \
             --cache-to=type=local,dest=/tmp/.buildx-cache,mode=max \
-            -t thesis-tracker .
+            -t thesis-tracker:latest .
 
       - name: Run Docker container
         run: |
-          docker run --rm thesis-tracker
+          docker run --rm thesis-tracker:latest
 
       - name: Run tests with Pytest
         run: |
