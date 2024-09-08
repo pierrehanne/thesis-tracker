@@ -112,7 +112,8 @@ jobs:
           docker buildx build \
             --cache-from=type=local,src=/tmp/.buildx-cache \
             --cache-to=type=local,dest=/tmp/.buildx-cache,mode=max \
-            -t thesis-tracker:latest .
+            -t thesis-tracker:latest . \
+            --load  
 
       - name: Run Docker container
         run: |
