@@ -1,7 +1,7 @@
 from factory.data_collector import DataCollector
 from factory.data_processor import DataProcessor
 from factory.data_publisher import DataPublisher
-from utils.logger import setup_logging, get_logger  # Import logging functions
+from utils.logger import get_logger, setup_logging  # Import logging functions
 
 
 def main():
@@ -33,7 +33,9 @@ def main():
 
     except Exception as e:
         # Log any errors that occur during the process
-        logger.error(f"An error occurred during the thesis tracking process: {e}", exc_info=True)
+        logger.error(
+            f"An error occurred during the thesis tracking process: {e}", exc_info=True
+        )
 
 
 if __name__ == "__main__":
