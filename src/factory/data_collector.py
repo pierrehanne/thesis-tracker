@@ -1,7 +1,9 @@
-import requests
-import pandas as pd
-from typing import List, Dict, Any
 from dataclasses import asdict
+from typing import Any, Dict, List
+
+import pandas as pd
+import requests
+
 from entity.thesis import Thesis
 from utils.config import config
 

@@ -1,7 +1,7 @@
 from factory.data_collector import DataCollector
 from factory.data_processor import DataProcessor
 from factory.data_publisher import DataPublisher
-from utils.logger import setup_logging, get_logger  # Import logging functions
+from utils.logger import get_logger, setup_logging  # Import logging functions
 
 
 def main():
