@@ -2,10 +2,10 @@ import logging
 import os
 
 # Define log file location and format
-LOG_DIR = 'logs'
-LOG_FILE = 'app.log'
-LOG_FORMAT = '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
-DATE_FORMAT = '%Y-%m-%d %H:%M:%S'
+LOG_DIR = "logs"
+LOG_FILE = "app.log"
+LOG_FORMAT = "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+DATE_FORMAT = "%Y-%m-%d %H:%M:%S"
 
 
 def setup_logging(level: int = logging.INFO) -> None:

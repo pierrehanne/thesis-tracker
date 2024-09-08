@@ -33,7 +33,9 @@ def main():
 
     except Exception as e:
         # Log any errors that occur during the process
-        logger.error(f"An error occurred during the thesis tracking process: {e}", exc_info=True)
+        logger.error(
+            f"An error occurred during the thesis tracking process: {e}", exc_info=True
+        )
 
 
 if __name__ == "__main__":
