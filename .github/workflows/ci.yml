@@ -94,6 +94,11 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
 
+      - name: Enable containerd image store
+        run: |
+          sudo service docker stop
+          sudo dockerd --containerd=/run/containerd/containerd.sock &
+
       - name: Cache Docker layers
         uses: actions/cache@v3
         with:
@@ -102,9 +107,12 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-docker-
 
-      - name: Build Docker image
+      - name: Build Docker image with cache
         run: |
-          docker build --cache-from=type=local,src=/tmp/.buildx-cache --cache-to=type=local,dest=/tmp/.buildx-cache -t thesis-tracker .
+          docker buildx build \
+            --cache-from=type=local,src=/tmp/.buildx-cache \
+            --cache-to=type=local,dest=/tmp/.buildx-cache,mode=max \
+            -t thesis-tracker .
 
       - name: Run Docker container
         run: |
