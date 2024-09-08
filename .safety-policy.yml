@@ -1,2 +1,3 @@
-ignore_vulnerabilities:
-  - 70612
+safety_policy:
+  ignore_vulnerabilities:
+    - 70612
