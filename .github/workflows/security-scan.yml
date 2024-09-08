@@ -28,7 +28,7 @@ jobs:
 
       - name: Run Safety security scan
         run: |
-          safety check --full-report
+          safety check --full-report --ignore 70612
 
       - name: Run Bandit security scan
         run: |

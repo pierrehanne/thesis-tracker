@@ -12,7 +12,7 @@ class DataCollector:
         if not self.api_url:
             raise ValueError("API URL not configured properly.")
 
-    def fetch_theses(self, query: str = '*', start: int = 0, size: int = 1000, sort: str = 'dateDesc') -> pd.DataFrame:
+    def fetch_theses(self, query: str = '*', start: int = 0, size: int = 100, sort: str = 'dateDesc') -> pd.DataFrame:
 
         all_theses = []
 
@@ -23,7 +23,7 @@ class DataCollector:
                 'nombre': size,
                 'tri': sort
             }
-            response = requests.get(self.api_url, params=params)
+            response = requests.get(self.api_url, params=params, timeout=30)
             response.raise_for_status()
             data = response.json()
 
