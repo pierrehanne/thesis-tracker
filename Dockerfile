@@ -1,26 +1,29 @@
 # First stage: build dependencies with Poetry
 FROM python:3.11-slim AS builder
+ENV POETRY_HOME="/opt/poetry"
+ENV PATH="$POETRY_HOME/bin:$PATH"
+RUN apt-get update && apt-get install -y curl && \
+    curl -sSL https://install.python-poetry.org | python3 -
+
 WORKDIR /app
-
-# Install Poetry in the build stage
-RUN pip install poetry
-
 COPY pyproject.toml poetry.lock ./
-RUN poetry config virtualenvs.create false && \
-    poetry install --no-dev
+RUN poetry config virtualenvs.create false && poetry install
 
 # Second stage: runtime
 FROM python:3.11-slim
+ENV POETRY_HOME="/opt/poetry"
+ENV PATH="$POETRY_HOME/bin:$PATH"
+RUN apt-get update && apt-get install -y curl && \
+    curl -sSL https://install.python-poetry.org | python3 -
 WORKDIR /app
-
-# Install Poetry in the runtime stage
-RUN pip install poetry
-
 COPY --from=builder /app /app
 COPY src/ src/
+COPY tests/ tests/
+
 COPY config.yaml ./
+COPY pyproject.toml poetry.lock ./
+RUN poetry config virtualenvs.create false && poetry install
+RUN poetry run pip list
 
-# Ensure Poetry is in PATH
-ENV PATH="/root/.local/bin:$PATH"
-
+# Run the application
 CMD ["poetry", "run", "python", "src/thesis_tracker.py"]

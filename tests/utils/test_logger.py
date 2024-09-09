@@ -1,9 +1,8 @@
 import unittest
 import os
-from logging import FileHandler
 from logging import StreamHandler
 from io import StringIO
-from utils.logger import setup_logging, get_logger
+from src.utils.logger import setup_logging, get_logger
 
 
 class TestLoggingSetup(unittest.TestCase):
