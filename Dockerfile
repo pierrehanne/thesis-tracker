@@ -18,6 +18,8 @@ RUN apt-get update && apt-get install -y curl && \
 WORKDIR /app
 COPY --from=builder /app /app
 COPY src/ src/
+COPY tests/ tests/
+
 COPY config.yaml ./
 COPY pyproject.toml poetry.lock ./
 RUN poetry config virtualenvs.create false && poetry install
