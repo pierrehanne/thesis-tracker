@@ -1,13 +1,14 @@
 # Thesis Tracker
 
-Thesis Tracker is a Python-based project designed to collect, process, and publish metadata from French academic theses using the [theses.fr API](https://www.theses.fr). The project is automated using GitHub Actions, with an optional Docker setup for consistent and reproducible environments.
+Thesis Tracker is a Python-based project designed to collect, process, and publish metadata from French academic theses using the [theses.fr API](https://www.theses.fr). 
+The project is automated using GitHub Actions, with an optional Docker setup for consistent and reproducible environments.
 
 ## Features
 
-- **Daily Data Collection**: Automatically collects and processes thesis metadata daily.
+- **Data Collection**: Automatically collects and processes thesis.
 - **Metadata Extraction**: Extracts relevant information such as thesis title, author, university, and defense date.
-- **Automated Workflows**: Uses GitHub Actions for automating data collection, processing, and publishing.
-- **Docker Integration**: Provides a Docker setup for consistent environments across development and production.
+- **Automated Workflows**: Uses ```GitHub Actions``` for automating unit tests for core functionalities using ```pytest```, scan vulnerabilities with ```safety``` and ```bandit```.
+- **Docker Integration**: Provides a ```Docker``` setup for consistent environments across development and production.
 
 ## Installation
 
@@ -15,14 +16,15 @@ Thesis Tracker is a Python-based project designed to collect, process, and publi
 
 - Python 3.11+
 - [Poetry](https://python-poetry.org/) for dependency management
-- Docker (optional, for containerized environments)
+- [Pytest](https://docs.pytest.org/en/stable/) for running tests
+- [Docker](https://docs.docker.com/get-started/) (optional, for containerized environments)
 
 ### Setup
 
 1. **Clone the repository**:
 
     ```bash
-    git clone https://github.com/your-username/thesis-tracker.git
+    git clone https://github.com/pierrehanne/thesis-tracker.git
     cd thesis-tracker
     ```
 
@@ -38,16 +40,6 @@ Thesis Tracker is a Python-based project designed to collect, process, and publi
     poetry shell
     ```
 
-4. **Configure environment variables** (if any):
-
-    Create a `.env` file to store your API keys or other configurations:
-
-    ```bash
-    touch .env
-    ```
-
-    Add the necessary environment variables to `.env`.
-
 ### Usage
 
 To start collecting thesis data, run the main script:
@@ -58,15 +50,27 @@ python thesis_tracker.py
 
 ### CI/CD with GitHub Actions
 
-This project uses GitHub Actions to automate:
-- Daily Data Collection: Collect and process data every day.
-- Code Testing and Linting: Ensure code quality before merges.
+This project uses GitHub Actions for Continuous Integration (CI) and Continuous Deployment (CD). 
+The CI/CD pipeline is defined in a YAML file and consists of three main jobs:
 
-You can find the workflow files in the .github/workflows directory.
+1. **Linting:** Checks the code for formatting, import order, and style issues.
+   - Tools: ```isort```, ```Flake8```, ```Black```
+   - Python version: 3.11
+   - Poetry is used to install dependencies and manage the environment.
+2. **Security Scans:** Runs security scans to ensure there are no vulnerabilities in dependencies or code.
+   - Tools: ```Safety```, ```Bandit```
+   - Python version: 3.11
+   - Runs after the linting job.
+3. **Testing:** Runs unit tests in a Docker container to ensure reproducibility and consistency across environments.
+   - Docker Build: The pipeline builds a Docker image using Buildx for caching.
+   - Run Tests: The Docker container runs the pytest tests inside the built image.
+
+You can find the workflow files in the ```.github/workflows directory```.
 
 ### Contributing
 
-Contributions are welcome! Please submit a pull request or open an issue to discuss any changes.
+Contributions are welcome! Please submit a pull request or open an issue to discuss any changes. 
+When contributing, ensure that new code is covered with appropriate unit tests.
 
 ### License
 
