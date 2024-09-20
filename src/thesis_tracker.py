@@ -1,13 +1,13 @@
 from factory.data_collector import DataCollector
 from factory.data_processor import DataProcessor
 from factory.data_publisher import DataPublisher
-from utils.logger import get_logger, setup_logging  # Import logging functions
+from utils.logger import get_logger, setup_logging
 
 
 def main():
     # Setup logging
-    setup_logging()  # Initialize logging (log to file and console)
-    logger = get_logger(__name__)  # Create a logger instance
+    setup_logging()
+    logger = get_logger(__name__)
 
     # Log the start of the process
     logger.info("Starting thesis tracking process")
